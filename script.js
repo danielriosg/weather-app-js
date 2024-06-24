@@ -10,6 +10,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const API_URL_CURRENT = "http://api.weatherapi.com/v1/current.json";
 
   searchButton.addEventListener("click", () => {
+    searchWeather();
+  });
+
+  // Event listener for Enter key press in city input
+  cityInput.addEventListener("keypress", (event) => {
+    if (event.key === "Enter") {
+      searchWeather();
+    }
+  });
+
+  // Function to fetch weather data and update UI
+  function searchWeather() {
     const city = cityInput.value.trim();
     if (city) {
       fetch(`${API_URL_CURRENT}?key=${API_KEY}&q=${city}`)
@@ -24,5 +36,5 @@ document.addEventListener("DOMContentLoaded", () => {
           console.error("Error fetching the weather data:", error);
         });
     }
-  });
+  }
 });
