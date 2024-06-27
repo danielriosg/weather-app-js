@@ -51,3 +51,20 @@ body {
 .forecast {
   margin-top: 20px;
 }
+
+.forecast-day {
+  background: #e0e0e0;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.forecast-day h3 {
+  margin: 0;
+  font-size: 1.2em;
+}
+
+.forecast-day p {
+  margin: 5px 0;
+  font-size: 1em;
+}
