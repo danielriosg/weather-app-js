@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const windSpeed = document.getElementById("wind-speed");
   const currentIcon = document.getElementById("current-icon");
   const forecastContainer = document.getElementById("forecast");
+  const errorMessage = document.getElementById("error-message");
 
   const API_KEY = "44ece02cfc874dd2a7c162152242406"; // Replace with your actual API key
   const API_URL_CURRENT = "http://api.weatherapi.com/v1/current.json";
@@ -26,8 +27,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const city = cityInput.value.trim();
     if (city) {
       fetch(`${API_URL_CURRENT}?key=${API_KEY}&q=${city}`)
-        .then((response) => response.json())
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("City not found");
+          }
+          return response.json();
+        })
         .then((data) => {
+          errorMessage.style.display = "none";
           cityName.textContent = data.location.name;
           temperature.textContent = `Temperature: ${data.current.temp_c}°C`;
           humidity.textContent = `Humidity: ${data.current.humidity}%`;
@@ -36,22 +43,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
           // Fetch 3-day weather forecast
           fetch(`${API_URL_FORECAST}?key=${API_KEY}&q=${city}&days=3`)
-            .then((response) => response.json())
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Error fetching forecast data");
+              }
+              return response.json();
+            })
             .then((data) => {
               displayForecast(data.forecast.forecastday);
             })
             .catch((error) => {
-              console.error("Error fetching the forecast data:", error);
+              errorMessage.textContent = error.message;
+              errorMessage.style.display = "block";
             });
         })
         .catch((error) => {
-          console.error("Error fetching the weather data:", error);
+          errorMessage.textContent = error.message;
+          errorMessage.style.display = "block";
+          cityName.textContent = "City Name";
+          temperature.textContent = "Temperature: --";
+          humidity.textContent = "Humidity: --";
+          windSpeed.textContent = "Wind Speed: --";
+          currentIcon.src = ""; // Clear the icon
+          forecastContainer.innerHTML = ""; // Clear forecast
         });
     }
   }
 
   function displayForecast(forecast) {
-    forecastContainer.innerHTML = "";
+    forecastContainer.innerHTML = ""; // Clear previous forecast
     forecast.forEach((day) => {
       const forecastElement = document.createElement("div");
       forecastElement.classList.add("forecast-day");

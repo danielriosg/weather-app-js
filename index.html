@@ -7,21 +7,22 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Weather Forecast App</h1>
-    <div class="search-bar">
-      <input type="text" id="city-input" placeholder="Enter city name">
-      <button id="search-button">Search</button>
-    </div>
-    <div class="weather-info">
-      <h2 id="city-name">City Name</h2>
-      <p id="temperature">Temperature: --</p>
-      <p id="humidity">Humidity: --</p>
-      <p id="wind-speed">Wind Speed: --</p>
-      <img id="current-icon" src="" alt=""> <!-- Add this line -->
-    </div>
-    <div id="forecast" class="forecast"></div>
+<div class="container">
+  <h1>Weather Forecast App</h1>
+  <div class="search-bar">
+    <input type="text" id="city-input" placeholder="Enter city name">
+    <button id="search-button">Search</button>
   </div>
-  <script src="script.js"></script>
+  <div class="weather-info">
+    <h2 id="city-name">City Name</h2>
+    <p id="temperature">Temperature: --</p>
+    <p id="humidity">Humidity: --</p>
+    <p id="wind-speed">Wind Speed: --</p>
+    <img id="current-icon" src="" alt=""> <!-- Add this line -->
+  </div>
+  <div id="forecast" class="forecast"></div>
+  <div id="error-message" class="error-message"></div> <!-- Add this line -->
+</div>
+<script src="script.js"></script>
 </body>
 </html>
