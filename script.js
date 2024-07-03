@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const currentIcon = document.getElementById("current-icon");
   const forecastContainer = document.getElementById("forecast");
   const errorMessage = document.getElementById("error-message");
+  const showRecentCitiesButton = document.getElementById("show-recent-cities");
+  const recentCitiesContainer = document.getElementById("recent-cities");
 
   const API_KEY = "44ece02cfc874dd2a7c162152242406"; // Replace with your actual API key
   const API_URL_CURRENT = "http://api.weatherapi.com/v1/current.json";
@@ -23,9 +25,29 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  showRecentCitiesButton.addEventListener("click", () => {
+    const cities = JSON.parse(localStorage.getItem("cities")) || [];
+    recentCitiesContainer.innerHTML = ""; // Clear previous list
+
+    const ul = document.createElement("ul");
+
+    cities.forEach((city) => {
+      const li = document.createElement("li");
+      li.textContent = city;
+      li.addEventListener("click", () => {
+        cityInput.value = city;
+        searchWeather();
+      });
+      ul.appendChild(li);
+    });
+
+    recentCitiesContainer.appendChild(ul);
+  });
+
   function searchWeather() {
     const city = cityInput.value.trim();
     if (city) {
+      // Fetch current weather data
       fetch(`${API_URL_CURRENT}?key=${API_KEY}&q=${city}`)
         .then((response) => {
           if (!response.ok) {
@@ -40,6 +62,9 @@ document.addEventListener("DOMContentLoaded", () => {
           humidity.textContent = `Humidity: ${data.current.humidity}%`;
           windSpeed.textContent = `Wind Speed: ${data.current.wind_kph} kph`;
           currentIcon.src = data.current.condition.icon; // Update the icon source
+
+          // Save the city to local storage
+          saveCityToLocalStorage(city);
 
           // Fetch 3-day weather forecast
           fetch(`${API_URL_FORECAST}?key=${API_KEY}&q=${city}&days=3`)
@@ -70,6 +95,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  function saveCityToLocalStorage(city) {
+    let cities = JSON.parse(localStorage.getItem("cities")) || [];
+    if (!cities.includes(city)) {
+      cities.push(city);
+      if (cities.length > 10) {
+        cities.shift(); // Keep only the last 10 cities
+      }
+      localStorage.setItem("cities", JSON.stringify(cities));
+    }
+  }
   function displayForecast(forecast) {
     forecastContainer.innerHTML = ""; // Clear previous forecast
     forecast.forEach((day) => {
