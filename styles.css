@@ -14,7 +14,7 @@ body {
   gap: 20px; /* Space between the two containers */
 }
 
-.container, #recent-cities-container {
+.container {
   background: white;
   padding: 20px;
   border-radius: 8px;
@@ -113,5 +113,12 @@ body {
   background: #ccc;
 }
 #recent-cities-container {
+  background: rgba(255, 255, 255, 0.184);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 200px; /* Override width specifically for #recent-cities-container */
   display: none;
+  flex-direction: column;
+  align-items: center;
 }
