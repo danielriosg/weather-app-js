@@ -26,22 +26,30 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   showRecentCitiesButton.addEventListener("click", () => {
-    const cities = JSON.parse(localStorage.getItem("cities")) || [];
-    recentCitiesContainer.innerHTML = ""; // Clear previous list
+    if (
+      recentCitiesContainer.style.display === "none" ||
+      recentCitiesContainer.style.display === ""
+    ) {
+      const cities = JSON.parse(localStorage.getItem("cities")) || [];
+      recentCitiesContainer.innerHTML = ""; // Clear previous list
 
-    const ul = document.createElement("ul");
+      const ul = document.createElement("ul");
 
-    cities.forEach((city) => {
-      const li = document.createElement("li");
-      li.textContent = city;
-      li.addEventListener("click", () => {
-        cityInput.value = city;
-        searchWeather();
+      cities.forEach((city) => {
+        const li = document.createElement("li");
+        li.textContent = city;
+        li.addEventListener("click", () => {
+          cityInput.value = city;
+          searchWeather();
+        });
+        ul.appendChild(li);
       });
-      ul.appendChild(li);
-    });
 
-    recentCitiesContainer.appendChild(ul);
+      recentCitiesContainer.appendChild(ul);
+      recentCitiesContainer.style.display = "block"; // Show the container
+    } else {
+      recentCitiesContainer.style.display = "none"; // Hide the container
+    }
   });
 
   function searchWeather() {
