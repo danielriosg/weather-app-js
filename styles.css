@@ -12,6 +12,7 @@ body {
 .app-container {
   display: flex;
   gap: 20px; /* Space between the two containers */
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
 }
 
 .container {
@@ -19,8 +20,22 @@ body {
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 500px; /* Define a fixed width */
+  width: 100%; /* Full width by default */
+  max-width: 500px; /* Maximum width for larger screens */
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+#recent-cities-container {
+  background: rgba(255, 255, 255, 0.184);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%; /* Full width by default */
+  max-width: 200px; /* Maximum width for larger screens */
+  display: none; /* Hidden by default */
   flex-direction: column;
   align-items: center;
 }
@@ -112,13 +127,30 @@ body {
 .recent-cities li:hover {
   background: #ccc;
 }
-#recent-cities-container {
-  background: rgba(255, 255, 255, 0.184);
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 200px; /* Override width specifically for #recent-cities-container */
-  display: none;
-  flex-direction: column;
-  align-items: center;
+
+/* Media Queries */
+
+/* Styles for tablets and larger screens */
+@media (min-width: 481px) {
+  .container {
+    width: 500px; /* Fixed width for larger screens */
+  }
+
+  #recent-cities-container {
+    width: 200px; /* Fixed width for larger screens */
+  }
+}
+
+/* Styles for desktop screens */
+@media (min-width: 769px) {
+  .app-container {
+    flex-wrap: nowrap; /* No wrapping on larger screens */
+  }
+}
+
+/* Styles for very small screens (mobile phones) */
+@media (max-width: 480px) {
+  .container, #recent-cities-container {
+    width: 100%; /* Full width for small screens */
+  }
 }
