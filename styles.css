@@ -9,12 +9,17 @@ body {
   background-color: #f0f0f0;
 }
 
-.container {
+.app-container {
+  display: flex;
+  gap: 20px; /* Space between the two containers */
+}
+
+.container, #recent-cities-container {
   background: white;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 500;
+  width: 500px; /* Define a fixed width */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -80,6 +85,7 @@ body {
   margin: 5px 0;
   font-size: 1em;
 }
+
 .error-message {
   color: red;
   margin-top: 10px;
@@ -106,4 +112,6 @@ body {
 .recent-cities li:hover {
   background: #ccc;
 }
-
+#recent-cities-container {
+  display: none;
+}

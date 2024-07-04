@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const errorMessage = document.getElementById("error-message");
   const showRecentCitiesButton = document.getElementById("show-recent-cities");
   const recentCitiesContainer = document.getElementById("recent-cities");
+  const recentCitiesBox = document.getElementById("recent-cities-container"); // New line
 
   const API_KEY = "44ece02cfc874dd2a7c162152242406"; // Replace with your actual API key
   const API_URL_CURRENT = "http://api.weatherapi.com/v1/current.json";
@@ -26,29 +27,31 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   showRecentCitiesButton.addEventListener("click", () => {
-    if (
-      recentCitiesContainer.style.display === "none" ||
-      recentCitiesContainer.style.display === ""
-    ) {
-      const cities = JSON.parse(localStorage.getItem("cities")) || [];
-      recentCitiesContainer.innerHTML = ""; // Clear previous list
+    const cities = JSON.parse(localStorage.getItem("cities")) || [];
+    recentCitiesContainer.innerHTML = ""; // Clear previous list
 
-      const ul = document.createElement("ul");
+    const ul = document.createElement("ul");
 
-      cities.forEach((city) => {
-        const li = document.createElement("li");
-        li.textContent = city;
-        li.addEventListener("click", () => {
-          cityInput.value = city;
-          searchWeather();
-        });
-        ul.appendChild(li);
+    cities.forEach((city) => {
+      const li = document.createElement("li");
+      li.textContent = city;
+      li.addEventListener("click", () => {
+        cityInput.value = city;
+        searchWeather();
       });
+      ul.appendChild(li);
+    });
 
-      recentCitiesContainer.appendChild(ul);
-      recentCitiesContainer.style.display = "block"; // Show the container
+    recentCitiesContainer.appendChild(ul);
+
+    // Toggle visibility of recent cities container
+    if (
+      recentCitiesBox.style.display === "none" ||
+      recentCitiesBox.style.display === ""
+    ) {
+      recentCitiesBox.style.display = "block";
     } else {
-      recentCitiesContainer.style.display = "none"; // Hide the container
+      recentCitiesBox.style.display = "none";
     }
   });
 
@@ -113,6 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.setItem("cities", JSON.stringify(cities));
     }
   }
+
   function displayForecast(forecast) {
     forecastContainer.innerHTML = ""; // Clear previous forecast
     forecast.forEach((day) => {
