@@ -9,6 +9,13 @@
 <body>
 <div class="app-container"> <!-- New outer container -->
   <div class="container">
+    <div class="dark-mode-toggle">
+  <label class="switch">
+    <input type="checkbox" id="toggle-dark-mode">
+    <span class="slider"></span>
+  </label>
+  <span class="label-text">Dark mode</span>
+</div>
     <h1>Weather Forecast App</h1>
     <div class="search-bar">
       <input type="text" id="city-input" placeholder="Enter city name">
@@ -32,7 +39,7 @@
     <div id="recent-cities" class="recent-cities"></div>
   </div>
 </div>
-<button id="toggle-dark-mode">Toggle Dark Mode</button>
+
 <script src="script.js"></script>
 </body>
 </html>

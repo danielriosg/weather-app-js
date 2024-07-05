@@ -41,6 +41,7 @@ button {
 }
 
 .container {
+  position: relative;
   background: white;
   padding: 20px;
   border-radius: 8px;
@@ -221,3 +222,72 @@ body.dark-mode .forecast-day {
 .close-button:hover {
   color: red; /* Change color on hover for indication */
 }
+.dark-mode-toggle {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  font-size: 0.9em; /* Smaller font size for the label */
+}
+
+/* Hide the checkbox input */
+.dark-mode-toggle .switch input {
+  display: none;
+}
+
+/* Slider container */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px; /* Adjusted width */
+  height: 20px; /* Adjusted height */
+  margin-right: 5px;
+}
+
+
+/* Slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 20px; /* Adjusted border radius */
+}
+
+
+/* Slider before the sliding */
+.switch .slider:before {
+  position: absolute;
+  content: "";
+  height: 16px; /* Adjusted size */
+  width: 16px; /* Adjusted size */
+  left: 2px; /* Adjusted position */
+  bottom: 2px; /* Adjusted position */
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+/* Checkbox checked state */
+.switch input:checked + .slider {
+  background-color: #007BFF;
+}
+
+/* Slider when checkbox is checked */
+.switch input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+/* Dark mode specific styles */
+body.dark-mode .dark-mode-toggle .slider {
+  background-color: #2196F3;
+}
+.label-text {
+  font-size: 12px; /* Adjusted font size */
+  margin-left: 8px; /* Adjusted margin */
+font-style: italic;}
