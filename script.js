@@ -161,4 +161,9 @@ document.addEventListener("DOMContentLoaded", () => {
       document.body.classList.add("dark-mode");
     }
   });
+  document
+    .getElementById("close-recent-cities")
+    .addEventListener("click", function () {
+      document.getElementById("recent-cities-container").style.display = "none";
+    });
 });

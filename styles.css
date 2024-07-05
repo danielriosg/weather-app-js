@@ -57,6 +57,13 @@ button {
 body.dark-mode .container {
   background: var(--container-background-color);
 }
+body.dark-mode .close-button {
+  color: #cccccc; /* Light gray color for dark mode */
+}
+
+body.dark-mode .close-button:hover {
+  color: red; /* Keep the hover effect in dark mode */
+}
 
 #recent-cities-container {
     background: white;
@@ -71,6 +78,7 @@ body.dark-mode .container {
   max-height: 500px; /* Set the maximum height */
   overflow-y: auto; /* Allow scrolling if content exceeds max-height */
   transition: background-color 0.3s;
+  position: relative; 
 }
 
 body.dark-mode #recent-cities-container {
@@ -198,4 +206,18 @@ body.dark-mode .forecast-day {
   .container, #recent-cities-container {
     width: 100%; /* Full width for small screens */
   }
+}
+.close-button {
+  position: absolute; /* Position it relative to parent */
+  top: 10px; /* Adjust positioning as needed */
+  right: 10px; /* Adjust positioning as needed */
+  background-color: transparent; /* Transparent background */
+  border: none; /* Remove border */
+  color: #333; /* Text color */
+  font-size: 20px; /* Increase font size for better visibility */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+.close-button:hover {
+  color: red; /* Change color on hover for indication */
 }
