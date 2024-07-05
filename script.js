@@ -144,8 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
       forecastContainer.appendChild(forecastElement);
     });
   }
-  document
-    .getElementById("toggle-dark-mode")
+  document.getElementById("toggle-dark-mode")
     .addEventListener("click", function () {
       document.body.classList.toggle("dark-mode");
       // Save user preference
