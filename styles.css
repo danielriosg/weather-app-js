@@ -21,7 +21,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #f0f0f0;
   background-color: var(--background-color);
   color: var(--text-color);
@@ -38,6 +38,7 @@ button {
   display: flex;
   gap: 20px; /* Space between the two containers */
   flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  
 }
 
 .container {
