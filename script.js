@@ -13,8 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const recentCitiesBox = document.getElementById("recent-cities-container"); // New line
 
   const API_KEY = "44ece02cfc874dd2a7c162152242406"; // Replace with your actual API key
-  const API_URL_CURRENT = "http://api.weatherapi.com/v1/current.json";
-  const API_URL_FORECAST = "http://api.weatherapi.com/v1/forecast.json";
+  const API_URL_CURRENT = "https://api.weatherapi.com/v1/current.json";
+  const API_URL_FORECAST = "https://api.weatherapi.com/v1/forecast.json";
 
   searchButton.addEventListener("click", () => {
     searchWeather();
